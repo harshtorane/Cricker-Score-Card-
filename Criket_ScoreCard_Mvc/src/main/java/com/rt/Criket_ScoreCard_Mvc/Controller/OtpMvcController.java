@@ -92,7 +92,7 @@ public class OtpMvcController {
         }
     }
     
-    @GetMapping("/login")
+    @GetMapping("/otp-login")
     public String showLogin() {
         return "Login";  // Login.jsp
     }
