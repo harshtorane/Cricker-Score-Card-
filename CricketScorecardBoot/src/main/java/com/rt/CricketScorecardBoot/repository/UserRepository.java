@@ -8,4 +8,6 @@ import com.rt.CricketScorecardBoot.entity.UserEntity;
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, Long> {
     UserEntity findByEmail(String email);
+
+	UserEntity findByName(String name);
 }

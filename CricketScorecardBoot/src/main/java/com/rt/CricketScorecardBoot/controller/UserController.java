@@ -60,5 +60,24 @@ public class UserController {
             return "Registration failed!";
         }
     }
+    
+    @PostMapping("/user/login")
+    public String loginUser(@RequestBody Map<String, String> loginData) {
+        try {
+            String name = loginData.get("name");
+            String password = loginData.get("password");
+
+            UserEntity user = userRepository.findByName(name);
+            if (user != null && user.getPassword().equals(password)) {
+                return "Login successful!";
+            } else {
+                return "Invalid credentials!";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Login failed!";
+        }
+    }
+
 
 }
