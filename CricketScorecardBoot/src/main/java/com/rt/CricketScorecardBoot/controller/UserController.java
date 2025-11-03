@@ -6,6 +6,7 @@ import com.rt.CricketScorecardBoot.service.OtpService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @CrossOrigin(origins = "http://localhost:8181")
@@ -60,24 +61,27 @@ public class UserController {
             return "Registration failed!";
         }
     }
-    
+
+    // ================= User Login =================
     @PostMapping("/user/login")
     public String loginUser(@RequestBody Map<String, String> loginData) {
         try {
             String name = loginData.get("name");
             String password = loginData.get("password");
 
-            UserEntity user = userRepository.findByName(name);
-            if (user != null && user.getPassword().equals(password)) {
-                return "Login successful!";
-            } else {
-                return "Invalid credentials!";
+            // fetch list of users with given name
+            List<UserEntity> users = (List<UserEntity>) userRepository.findByName(name);
+
+            for (UserEntity user : users) {
+                if (user.getPassword().equals(password)) {
+                    return "Login successful!";
+                }
             }
+
+            return "Invalid credentials!";
         } catch (Exception e) {
             e.printStackTrace();
             return "Login failed!";
         }
     }
-
-
 }

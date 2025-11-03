@@ -4,10 +4,18 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.rt.CricketScorecardBoot.entity.UserEntity;
+import java.util.List;
 
 @Repository
 public interface UserRepository extends JpaRepository<UserEntity, Long> {
     UserEntity findByEmail(String email);
 
-	UserEntity findByName(String name);
+   
+    List<UserEntity> findByName(String name);
+
+
+	void save(int id);
+
+
+	
 }

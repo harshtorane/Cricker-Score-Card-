@@ -5,9 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class CricketScorecardBootApplication {
-
-	public static void main(String[] args) {
-		SpringApplication.run(CricketScorecardBootApplication.class, args);
-	}
-
+    public static void main(String[] args) {
+        SpringApplication.run(CricketScorecardBootApplication.class, args);
+    }
 }

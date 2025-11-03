@@ -19,7 +19,7 @@ public class UserEntity {
 
     private boolean verified;
 
-    // getters & setters
+    
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
