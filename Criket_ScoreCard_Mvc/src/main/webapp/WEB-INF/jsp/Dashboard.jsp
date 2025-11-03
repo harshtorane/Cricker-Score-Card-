@@ -1,7 +1,8 @@
 <%@ include file="Heder.jsp" %>
 <%@ include file="Footer.jsp" %>
-<body>
 
+
+<body>
 	<!-- Begin Wrapper -->
 	<div class="main-wrapper">		
 
@@ -80,7 +81,7 @@
 							<nav aria-label="breadcrumb">
 								<ol class="breadcrumb breadcrumb-divide mb-0">
 									<li class="breadcrumb-item d-flex align-items-center"><a href="index-2.html"><i class="isax isax-home-2 me-1"></i>Home</a></li>
-									<li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+									<li class="breadcrumb-item active" aria-current="page">Cricket Scorecard</li>
 								</ol>
 							</nav>	
 
@@ -318,48 +319,53 @@
                                 </a>
                             </div>
 
-							<!-- User Dropdown -->
-							<div class="dropdown profile-dropdown">
-								<a href="javascript:void(0);" class="dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown"  data-bs-auto-close="outside">
-									<span class="avatar online">
-										<img src="assets/img/profiles/avatar-01.jpg" alt="Img" class="img-fluid rounded-circle">
-									</span>
-								</a>
-								<div class="dropdown-menu p-2">
-									<div class="d-flex align-items-center bg-light rounded-1 p-2 mb-2">
-										<span class="avatar avatar-lg me-2">
-											<img src="assets/img/profiles/avatar-01.jpg" alt="img" class="rounded-circle" >
-										</span>
-										<div>
-											<h6 class="fs-14 fw-medium mb-1">Jafna Cremson</h6>
-											<p class="fs-13">Administrator</p>
-										</div>
-									</div>
+						<!-- User Dropdown -->
+<div class="dropdown profile-dropdown">
+    <a href="javascript:void(0);" class="dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown" data-bs-auto-close="outside">
+        <span class="avatar online">
+            <img src="assets/img/profiles/avatar-01.jpg" alt="Img" class="img-fluid rounded-circle">
+        </span>
+    </a>
 
-									<!-- Item-->
-									<a class="dropdown-item d-flex align-items-center" href="account-settings.html">
-										<i class="isax isax-profile-circle me-2"></i>Profile Settings
-									</a>
+    <div class="dropdown-menu p-2">
+        <!-- Dynamic user info -->
+        <div class="d-flex align-items-center bg-light rounded-1 p-2 mb-2">
+            <span class="avatar avatar-lg me-2">
+                <img src="assets/img/profiles/avatar-01.jpg" alt="img" class="rounded-circle">
+            </span>
+            <div>
+                
+                <h6 class="fs-14 fw-medium mb-1" th:text="${userName}">Username</h6>
+                <p class="fs-13">Logged In</p>
+            </div>
+        </div>
 
-									<!-- Item-->
-									<a class="dropdown-item d-flex align-items-center" href="inventory-report.html">
-										<i class="isax isax-document-text me-2"></i>Reports
-									</a>
+        <!-- Profile link -->
+        <a class="dropdown-item d-flex align-items-center" href="account-settings.html">
+            <i class="isax isax-profile-circle me-2"></i>Profile Settings
+        </a>
 
-									<!-- Item-->
-									<div class="form-check form-switch form-check-reverse d-flex align-items-center justify-content-between dropdown-item mb-0">
-										<label class="form-check-label" for="notify"><i class="isax isax-notification me-2"></i>Notifications</label>
-										<input class="form-check-input" type="checkbox" role="switch" id="notify">
-									</div>
+        <!-- Reports link -->
+        <a class="dropdown-item d-flex align-items-center" href="inventory-report.html">
+            <i class="isax isax-document-text me-2"></i>Reports
+        </a>
 
-									<hr class="dropdown-divider my-2">
+        <!-- Notifications toggle -->
+        <div class="form-check form-switch form-check-reverse d-flex align-items-center justify-content-between dropdown-item mb-0">
+            <label class="form-check-label" for="notify"><i class="isax isax-notification me-2"></i>Notifications</label>
+            <input class="form-check-input" type="checkbox" role="switch" id="notify">
+        </div>
 
-									<!-- Item-->
-									<a class="dropdown-item logout d-flex align-items-center" href="login.html">
-										<i class="isax isax-logout me-2"></i>Sign Out
-									</a>
-								</div>
-							</div>
+        <hr class="dropdown-divider my-2">
+
+        <!-- Sign Out -->
+        <a class="dropdown-item logout d-flex align-items-center" href="/logout">
+            <i class="isax isax-logout me-2"></i>Sign Out
+        </a>
+    </div>
+</div>
+
+
 
 						</div>
 					</div>
@@ -501,12 +507,12 @@
 								<ul>
 									<li class="submenu">
 										<a href="javascript:void(0);" class="active subdrop">
-											<i class="isax isax-element-45"></i><span>Dashboard</span>
+											<i class="isax isax-element-45"></i><span>Cricket Scorecard</span>
 											<span class="menu-arrow"></span>
 										</a>
 										<ul>
-											<li><a href="index-2.html" class="active">Admin Dashboard</a></li>
-											<li><a href="admin-dashboard.html">Admin Dashboard 2</a></li>
+											<li><a href="index-2.html" class="active"></a></li>
+											 <li><a href="tournament">Add Tournament/Series</a></li>
 											<li><a href="customer-dashboard.html">Customer Dashboard</a></li>
 											<li><a href="super-admin-dashboard.html">Super Admin Dashboard</a></li>
 										</ul>
@@ -976,7 +982,7 @@
 									</li>
 									<li>
 										<a href="faq.html">
-											<i class="isax isax-message-question5"></i><span>FAQ’S</span>
+											<i class="isax isax-message-question5"></i><span>FAQâS</span>
 										</a>
 									</li>
 								</ul>

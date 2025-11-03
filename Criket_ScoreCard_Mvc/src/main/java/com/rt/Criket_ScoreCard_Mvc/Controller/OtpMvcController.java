@@ -49,7 +49,7 @@ public class OtpMvcController {
             if(response.toLowerCase().contains("success")) {
                 model.addAttribute("verifyMessage", "OTP Verified ✅");
                 model.addAttribute("email", email);
-                return "Register"; // OTP verified → show password form
+                return "Register"; 
             } else {
                 model.addAttribute("verifyMessage", "Invalid OTP ❌");
                 model.addAttribute("email", email);
@@ -62,7 +62,7 @@ public class OtpMvcController {
         }
     }
 
-    // ✅ New: Register User to Boot DB
+    
     @PostMapping("/registerUser")
     public String registerUser(@RequestParam String fullname,
                                @RequestParam String email,
@@ -76,14 +76,14 @@ public class OtpMvcController {
             user.put("password", password);
             user.put("verified", true);
 
-            // Call Boot API
+            
             restTemplate.postForObject(
                 BOOT_URL + "/api/user/register",
                 user,
                 String.class
             );
 
-            // Redirect to login page after successful registration
+            
             return "redirect:/Login";
 
         } catch (Exception e) {
@@ -94,7 +94,9 @@ public class OtpMvcController {
     
     @GetMapping("/otp-login")
     public String showLogin() {
-        return "Login";  // Login.jsp
+        return "Login";  
     }
+    
+    
 }
 
