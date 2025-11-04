@@ -30,5 +30,9 @@ public class DashboardController {
         }
     }
     
+    @GetMapping("/home")
+    public String Home() {
+    	return "Dashboard";
+    }
     
 }
