@@ -20,33 +20,33 @@ public class TouernamentController {
     @Autowired
     private CricketService cricketService;
 
-    // 🟢 Tournament Registration Page
+
     @GetMapping
     public String tournamentPage(Model model) {
-        model.addAttribute("tournament", new Touernament_Entity());
-        return "Touernament";  // JSP form page
+        model.addAttribute("Tournament", new Touernament_Entity());
+        return "Tournament";  
     }
 
-    // 🟢 Save Tournament and Redirect to Dashboard
+    
     @PostMapping("/save")
     public String saveTournament(@ModelAttribute("tournament") Touernament_Entity tournament) {
         String response = cricketService.sendTournamentData(tournament);
 
         if (response != null && response.toLowerCase().contains("success")) {
             System.out.println("✅ Tournament added successfully!");
-            // 👉 Save झाल्यावर direct dashboard वर जा
-            return "redirect:/tournament/dashboard";
+           
+            return "redirect:/Tournament/dashboard";
         } else {
             System.out.println("❌ Failed to add Tournament!");
-            return "Touernament";
+            return "Tournament";
         }
     }
 
-    // 🟢 Tournament Dashboard Page
+    
     @GetMapping("/dashboard")
     public String tournamentDashboard(Model model) {
-        List<Touernament_Entity> tournaments = cricketService.getAllTournaments();
-        model.addAttribute("tournaments", tournaments);
-        return "Dashboard"; // JSP file name
+        List<Touernament_Entity> Tournament = cricketService.getAllTournaments();
+        model.addAttribute("Tournament", Tournament);
+        return "Dashboard"; 
     }
 }

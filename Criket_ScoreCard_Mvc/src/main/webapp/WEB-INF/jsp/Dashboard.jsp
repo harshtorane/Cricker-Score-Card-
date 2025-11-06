@@ -1,5 +1,6 @@
 <%@ include file="Heder.jsp" %>
 <%@ include file="Footer.jsp" %>
+<%@ include file="sidebar.jsp" %>
 
 
 <body>
@@ -111,142 +112,69 @@
 						<img src="assets/img/icons/dashboard.svg" alt="img">
 					</div>
 				</div>
-
-				<!-- start row -->
+				
+				
+				
 				<div class="row">
-					<div class="col-md-4 d-flex">
-						<div class="card flex-fill">
-							<div class="card-body">
-								<div class="mb-3">
-									<h6 class="d-flex align-items-center mb-1"><i class="isax isax-category5 text-default me-2"></i>Overview</h6>
-								</div>
-								<div class="row g-4">
-									<div class="col-xl-6">
-										<div class="d-flex align-items-center">
-											<span class="avatar avatar-44 avatar-rounded bg-primary-subtle text-primary flex-shrink-0 me-2">
-												<i class="isax isax-document-text-1 fs-20"></i>
-											</span>
-											<div>
-												<p class="mb-1 text-truncate">Invoices</p>
-												<h6 class="fs-16 fw-semibold mb-0 text-truncate">1,041</h6>
-											</div>
-										</div>
-									</div>
-									<div class="col-xl-6">
-										<div class="d-flex align-items-center me-2">
-											<span class="avatar avatar-44 avatar-rounded bg-success-subtle text-success-emphasis flex-shrink-0 me-2">
-												<i class="isax isax-profile-2user fs-20"></i>
-											</span>
-											<div>
-												<p class="mb-1 text-truncate">Customers</p>
-												<h6 class="fs-16 fw-semibold mb-0 text-truncate">3,462</h6>
-											</div>
-										</div>
-									</div>
-									<div class="col-xl-6">
-										<div class="d-flex align-items-center">
-											<span class="avatar avatar-44 avatar-rounded bg-warning-subtle text-warning-emphasis flex-shrink-0 me-2">
-												<i class="isax isax-dcube fs-20"></i>
-											</span>
-											<div>
-												<p class="mb-1 text-truncate">Amount Due</p>
-												<h6 class="fs-16 fw-semibold mb-0 text-truncate">$1,642</h6>
-											</div>
-										</div>
-									</div>
-									<div class="col-xl-6">
-										<div class="d-flex align-items-center me-2">
-											<span class="avatar avatar-44 avatar-rounded bg-info-subtle text-info-emphasis flex-shrink-0 me-2">
-												<i class="isax isax-document-text fs-20"></i>
-											</span>
-											<div>
-												<p class="mb-1 text-truncate">Quotations</p>
-												<h6 class="fs-16 fw-semibold mb-0 text-truncate">2,150</h6>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div> <!-- end card body -->
-						</div> <!-- end card -->
-					</div> <!-- end col -->
-					<div class="col-md-4 d-flex">
-						<div class="card flex-fill">
-							<div class="card-body">
-								<div class="mb-3">
-									<h6 class="d-flex align-items-center mb-1"><i class="isax isax-chart-215 text-default me-2"></i>Sales Analytics</h6>
-								</div>
-								<div class="row g-4">
-									<div class="col-xl-6">
-										<div class="d-flex align-items-center">
-											<span class="avatar avatar-44 avatar-rounded bg-primary-subtle text-primary flex-shrink-0 me-2">
-												<i class="isax isax-document-forward fs-20"></i>
-											</span>
-											<div>
-												<p class="mb-1 text-truncate">Total Sales</p>
-												<h6 class="fs-16 fw-semibold mb-0">$40,569</h6>
-											</div>
-										</div>
-									</div>
-									<div class="col-xl-6">
-										<div class="d-flex align-items-center me-2">
-											<span class="avatar avatar-44 avatar-rounded bg-success-subtle text-success-emphasis flex-shrink-0 me-2">
-												<i class="isax isax-programming-arrow fs-20"></i>
-											</span>
-											<div>
-												<p class="mb-1 text-truncate">Purchase</p>
-												<h6 class="fs-16 fw-semibold mb-0 text-truncate">$1,54,220</h6>
-											</div>
-										</div>
-									</div>
-									<div class="col-xl-6">
-										<div class="d-flex align-items-center">
-											<span class="avatar avatar-44 avatar-rounded bg-warning-subtle text-warning-emphasis flex-shrink-0 me-2">
-												<i class="isax isax-dollar-circle fs-20"></i>
-											</span>
-											<div>
-												<p class="mb-1 mb-0">Expenses</p>
-												<h6 class="fs-16 fw-semibold text-truncate">$10,041</h6>
-											</div>
-										</div>
-									</div>
-									<div class="col-xl-6">
-										<div class="d-flex align-items-center me-2">
-											<span class="avatar avatar-44 avatar-rounded bg-info-subtle text-info-emphasis flex-shrink-0 me-2">
-												<i class="isax isax-flag fs-20"></i>
-											</span>
-											<div>
-												<p class="mb-1 text-truncate">Credits</p>
-												<h6 class="fs-16 fw-semibold mb-0 text-truncate">$12,150</h6>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div> <!-- end card body -->
-						</div> <!-- end card -->
-					</div> <!-- end col -->
-					<div class="col-md-4 d-flex">
-						<div class="card flex-fill">
-							<div class="card-body">
-								<div class="mb-3">
-									<h6 class="d-flex align-items-center mb-1"><i class="isax isax-chart-success5 text-default me-2"></i>Invoice Statistics</h6>
-								</div>
-								<div class="row g-4">
-									<div class="col-xl-6">
-										<div class="d-flex align-items-center">
-											<span class="avatar avatar-44 avatar-rounded bg-primary-subtle text-primary flex-shrink-0 me-2">
-												<i class="isax isax-document fs-20"></i>
-											</span>
-											<div>
-												<p class="mb-1 text-truncate">Invoiced</p>
-												<h6 class="fs-16 fw-semibold mb-0">$21,132</h6>
-											</div>
-										</div>
-									</div>
-									<div class="col-xl-6">
-										<div class="d-flex align-items-center me-2">
-											<span class="avatar avatar-44 avatar-rounded bg-success-subtle text-success-emphasis flex-shrink-0 me-2">
-												<i class="isax isax-document-forward fs-20"></i>
-											</span>
-											<div>
-												<p class="mb-1 text-truncate">Received</p>
-												<h6 class="fs-16 fw-semibold mb-0
+    <!-- Current Tournaments -->
+    <div class="col-md-4 d-flex">
+        <div class="card flex-fill shadow-sm">
+            <div class="card-body">
+                <h6 class="d-flex align-items-center mb-3">
+                    <i class="isax isax-calendar text-primary me-2"></i>Current Tournaments
+                </h6>
+                <c:if test="${empty currentTournaments}">
+                    <p class="text-muted">No Current Tournaments Found</p>
+                </c:if>
+                <c:forEach var="t" items="${currentTournaments}">
+                    <div class="border rounded p-2 mb-2">
+                        <h6 class="mb-1">${t.name}</h6>
+                        <p class="mb-0 fs-13 text-muted">${t.startDate} - ${t.endDate}</p>
+                    </div>
+                </c:forEach>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upcoming Tournaments -->
+    <div class="col-md-4 d-flex">
+        <div class="card flex-fill shadow-sm">
+            <div class="card-body">
+                <h6 class="d-flex align-items-center mb-3">
+                    <i class="isax isax-calendar5 text-primary me-2"></i>Upcoming Tournaments
+                </h6>
+                <c:if test="${empty upcomingTournaments}">
+                    <p class="text-muted">No Upcoming Tournaments Found</p>
+                </c:if>
+                <c:forEach var="t" items="${upcomingTournaments}">
+                    <div class="border rounded p-2 mb-2">
+                        <h6 class="mb-1">${t.name}</h6>
+                        <p class="mb-0 fs-13 text-muted">${t.startDate} - ${t.endDate}</p>
+                    </div>
+                </c:forEach>
+            </div>
+        </div>
+    </div>
+
+    <!-- Saved Tournaments -->
+    <div class="col-md-4 d-flex">
+        <div class="card flex-fill shadow-sm">
+            <div class="card-body">
+                <h6 class="d-flex align-items-center mb-3">
+                    <i class="isax isax-save5 text-primary me-2"></i>Saved Tournaments
+                </h6>
+                <c:if test="${empty savedTournaments}">
+                    <p class="text-muted">No Tournaments Saved Yet</p>
+                </c:if>
+                <c:forEach var="t" items="${savedTournaments}">
+                    <div class="border rounded p-2 mb-2">
+                        <h6 class="mb-1">${t.name}</h6>
+                        <p class="mb-0 fs-13 text-muted">${t.startDate} - ${t.endDate}</p>
+                    </div>
+                </c:forEach>
+            </div>
+        </div>
+    </div>
+</div>
+						
+	
