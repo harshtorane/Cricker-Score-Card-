@@ -52,4 +52,6 @@ public class Score_Card_controller {
     public String tournamentErrorPage() {
         return "TouenamentError";
     }
+    
+    
 }

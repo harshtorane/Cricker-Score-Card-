@@ -27,8 +27,8 @@ public class TouernamentController {
     public String saveTournament(@ModelAttribute("tournament") Touernament_Entity tournament) {
         String response = cricketService.sendTournamentData(tournament);
         if (response != null && response.toLowerCase().contains("success")) {
-            System.out.println("✅ Tournament added successfully!");
-            return "redirect:/tournament/dashboard";
+            System.out.println(" Tournament added successfully!");
+            return "redirect:/dashboard";
         } else {
             System.out.println("❌ Failed to add Tournament!");
             return "Tournament";
