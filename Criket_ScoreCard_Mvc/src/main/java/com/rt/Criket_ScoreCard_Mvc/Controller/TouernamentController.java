@@ -41,4 +41,10 @@ public class TouernamentController {
         model.addAttribute("tournaments", tournaments);
         return "Dashboard";
     }
+    @GetMapping("/manage")
+    public String manageTournament(@RequestParam int id, Model model) {
+        Touernament_Entity tournament = cricketService.getTournamentById(id);
+        model.addAttribute("tournament", tournament);
+        return "TournamentManage"; // नवीन JSP
+    }
 }

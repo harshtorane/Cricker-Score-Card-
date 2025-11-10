@@ -50,4 +50,8 @@ public class CricketService {
             return null;
         }
     }
+    public Touernament_Entity getTournamentById(int id) {
+        return restTemplate.getForObject(BASE_URL + "/" + id, Touernament_Entity.class);
+    }
+
 }

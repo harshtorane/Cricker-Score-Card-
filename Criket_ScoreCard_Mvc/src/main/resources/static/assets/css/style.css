@@ -81,6 +81,20 @@
   --cf-menu-item-active-color: #7539FF;
   --cf-menu-item-active-bg: #fff;
 }
+/*
+my personal code 
+*/
+body {
+    background: url("assets/img/cricket-bg.png") no-repeat center center fixed;
+    background-size: cover;        /* image पूर्ण पानभर stretch होईल */
+    background-attachment: fixed;  /* scroll केल्यावर image स्थिर राहील */
+    background-position: center;
+    min-height: 100vh;             /* full height cover करेल */
+    margin: 0;
+    padding: 0;
+}
+
+
 :root[data-bs-theme=dark] {
   --cf-light: #252630;
   --cf-light-rgb: 37, 38, 48;
@@ -960,6 +974,24 @@ legend + * {
 ::-webkit-search-decoration {
   -webkit-appearance: none;
 }
+
+.cricket-bg-icon {
+    opacity: 0.25; /* हलका दिसेल background सारखा */
+    z-index: 0;
+}
+
+.cricket-icon {
+    width: 180px; /* size adjust करू शकतोस */
+    height: auto;
+    border-radius: 50%; /* गोल look देतो */
+    filter: drop-shadow(0 0 12px rgba(255,255,255,0.2));
+}
+
+.welcome-wrap > * {
+    position: relative;
+    z-index: 1; /* text वर राहील */
+}
+
 
 ::-webkit-color-swatch-wrapper {
   padding: 0;

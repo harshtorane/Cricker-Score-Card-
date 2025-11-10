@@ -38,7 +38,7 @@ public class DashboardController {
         String currentDate = now.format(dateFormatter);
         String currentTime = now.format(timeFormatter);
 
-        
+        // ✅ सर्व data model मध्ये पाठवा
         model.addAttribute("userName", userName);
         model.addAttribute("tournaments", tournaments);
         model.addAttribute("currentDate", currentDate);

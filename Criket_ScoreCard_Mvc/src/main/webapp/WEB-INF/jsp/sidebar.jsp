@@ -143,9 +143,11 @@
 
 				<!-- Start Logo -->
 				<div class="sidebar-logo">
-					<a href="home" class="logo logo-normal">
-						<img src="assets/img/logo.svg" alt="Logo">
-					</a>
+    <a href="home" class="logo logo-normal">
+        <img src="assets/img/sc-removebg-preview.png" alt="Logo" >
+    </a>
+
+
 					<a href="home" class="logo-small">
 						<img src="assets/img/logo-small.svg" alt="Logo">
 					</a>
@@ -178,7 +180,7 @@
 				<div class="sidebar-inner" data-simplebar>
 					<div id="sidebar-menu" class="sidebar-menu">
 						<ul>
-							<li class="menu-title"><span>Main</span></li>
+						
 							<li>
 								<ul>
 									<li class="submenu">
