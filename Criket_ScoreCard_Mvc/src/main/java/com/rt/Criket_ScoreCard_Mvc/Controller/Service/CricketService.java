@@ -16,7 +16,7 @@ public class CricketService {
     private final RestTemplate restTemplate = new RestTemplate();
     private final String BASE_URL = "http://localhost:8080/api/tournament";
 
-    // ✅ POST - Save Tournament
+    
     public String sendTournamentData(Touernament_Entity tournament) {
         try {
             String response = restTemplate.postForObject(BASE_URL, tournament, String.class);
@@ -28,7 +28,7 @@ public class CricketService {
         }
     }
 
-    // ✅ GET - Fetch all tournaments
+   
     public List<Touernament_Entity> getAllTournaments() {
         try {
             Touernament_Entity[] tournaments = restTemplate.getForObject(BASE_URL, Touernament_Entity[].class);
@@ -41,7 +41,7 @@ public class CricketService {
         }
     }
 
-    // ✅ Helper method - convert String date (yyyy-MM-dd) to LocalDate safely
+   
     public LocalDate parseDate(String dateStr) {
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");

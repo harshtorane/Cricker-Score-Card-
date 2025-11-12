@@ -98,7 +98,7 @@
                     <div class="tab-pane fade show active" id="teams" role="tabpanel">
                         <h5>Teams Management</h5>
                         <p>Manage or add teams for this tournament.</p>
-                        <a href="/team/add?tournamentId=${tournament.id}" class="btn btn-primary btn-sm">➕ Add Team</a>
+                       <a href="/AddTeam" class="btn btn-primary btn-sm">➕ Add Team</a>
                         <a href="/team/list?tournamentId=${tournament.id}" class="btn btn-secondary btn-sm">👥 View Teams</a>
                     </div>
 

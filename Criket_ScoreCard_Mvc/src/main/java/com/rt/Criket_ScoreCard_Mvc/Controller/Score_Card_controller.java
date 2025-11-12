@@ -42,16 +42,14 @@ public class Score_Card_controller {
     }
     
     
-    @RequestMapping("/TournamentSuccess")
-    public String tournamentSuccessPage() {
-        return "TouernamentSuccesfully";
+    @RequestMapping("/AddTeam")
+    public String addTeamPage() {
+        return "AddTeam"; 
     }
 
+
     
-    @RequestMapping("/TournamentError")
-    public String tournamentErrorPage() {
-        return "TouenamentError";
-    }
+    
     
     
 }

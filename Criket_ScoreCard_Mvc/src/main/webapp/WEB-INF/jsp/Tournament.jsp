@@ -20,14 +20,14 @@
         /* Main wrapper styling */
         .main-wrapper {
             display: flex;
-            justify-content: center;   /* 🟢 keeps form center aligned */
+            justify-content: center;   
             padding: 50px 0;
         }
 
-        /* Form box styling */
+        
         form {
-            width: 55%;                /* Medium width for balanced layout */
-            margin-left: 10%;          /* Light right shift (moves form slightly right) */
+            width: 55%;                
+            margin-left: 10%;          
             padding: 30px 40px;
             background: #fff;
             border-radius: 12px;
