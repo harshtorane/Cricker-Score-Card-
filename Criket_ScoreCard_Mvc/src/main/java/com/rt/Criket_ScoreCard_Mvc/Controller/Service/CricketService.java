@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.rt.Criket_ScoreCard_Mvc.Controller.Entity.Touernament_Entity;
+import com.rt.CricketScorecardBoot.entity.Schedule;   // ⭐ ADD THIS
 
 @Service
 public class CricketService {
@@ -16,7 +17,6 @@ public class CricketService {
     private final RestTemplate restTemplate = new RestTemplate();
     private final String BASE_URL = "http://localhost:8080/api/tournament";
 
-    
     public String sendTournamentData(Touernament_Entity tournament) {
         try {
             String response = restTemplate.postForObject(BASE_URL, tournament, String.class);
@@ -28,7 +28,6 @@ public class CricketService {
         }
     }
 
-   
     public List<Touernament_Entity> getAllTournaments() {
         try {
             Touernament_Entity[] tournaments = restTemplate.getForObject(BASE_URL, Touernament_Entity[].class);
@@ -41,7 +40,6 @@ public class CricketService {
         }
     }
 
-   
     public LocalDate parseDate(String dateStr) {
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -50,8 +48,22 @@ public class CricketService {
             return null;
         }
     }
+
     public Touernament_Entity getTournamentById(int id) {
         return restTemplate.getForObject(BASE_URL + "/" + id, Touernament_Entity.class);
     }
 
+
+    // ⭐⭐⭐ ADD THIS NEW METHOD ⭐⭐⭐
+    public Schedule[] getScheduleByTournament(int tournamentId) {
+        try {
+            return restTemplate.getForObject(
+                "http://localhost:8080/api/schedule/" + tournamentId,
+                Schedule[].class
+            );
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new Schedule[0];
+        }
+    }
 }
