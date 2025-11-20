@@ -70,6 +70,15 @@ public class Teams{
 		
 	}
     
+	private int tournamentId;
+
+	public int getTournamentId() {
+	    return tournamentId;
+	}
+
+	public void setTournamentId(int tournamentId) {
+	    this.tournamentId = tournamentId;
+	}
     
 
 }
