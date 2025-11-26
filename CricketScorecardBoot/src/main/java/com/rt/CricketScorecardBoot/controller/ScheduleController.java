@@ -56,4 +56,10 @@ public class ScheduleController {
 
         return "Updated Successfully";
     }
+ // =============== GET SCHEDULE BY ID =================
+    @GetMapping("/getById/{id}")
+    public Schedule getById(@PathVariable int id) {
+        return repo.findById(id).orElse(null);
+    }
+
 }

@@ -22,6 +22,22 @@ public class MatchStartController {
 
     @PostMapping
     public MatchStart save(@RequestBody MatchStart m) {
+
+        // Already exists?
+        MatchStart existing = repo.findByScheduleId(m.getScheduleId());
+
+        if (existing != null) {
+            // update same row instead of inserting new
+            existing.setTossWinner(m.getTossWinner());
+            existing.setChooseTo(m.getChooseTo());
+            existing.setTournamentId(m.getTournamentId());
+            existing.setTotalOvers(m.getTotalOvers());
+            existing.setOversPerBowler(m.getOversPerBowler());
+
+            return repo.save(existing);
+        }
+
+        // if not exist, create new
         return repo.save(m);
     }
 

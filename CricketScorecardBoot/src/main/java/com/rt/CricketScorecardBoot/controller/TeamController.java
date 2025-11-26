@@ -49,4 +49,14 @@ public class TeamController {
         teamService.Delete(id);
         return "Team deleted successfully";
     }
+    @GetMapping("/team/tournament/{tournamentId}")
+    public List<Teams> getTeamsByTournament(@PathVariable int tournamentId) {
+        return teamService.getTeamsByTournament(tournamentId);
+    }
+    @GetMapping("/team/name/{teamName}")
+    public Teams getTeamByName(@PathVariable String teamName) {
+        return teamService.getTeamByName(teamName);
+    }
+
+
 }

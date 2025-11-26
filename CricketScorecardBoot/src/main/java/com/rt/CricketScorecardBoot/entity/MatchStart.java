@@ -15,18 +15,30 @@ public class MatchStart {
     private int scheduleId;
     private int tournamentId;
 
-    private String teamA;
-    private String teamB;
-
     private String tossWinner;
-    private String tossDecision;
+    private String chooseTo;
 
-    private String striker;
-    private String nonStriker;
-    private String bowler;
+    private int totalOvers;        // NEW
+    private int oversPerBowler;    // NEW
 
-    private String playingXI_A;  
-    private String playingXI_B;
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
 
-    // GETTERS + SETTERS
+    public int getScheduleId() { return scheduleId; }
+    public void setScheduleId(int scheduleId) { this.scheduleId = scheduleId; }
+
+    public int getTournamentId() { return tournamentId; }
+    public void setTournamentId(int tournamentId) { this.tournamentId = tournamentId; }
+
+    public String getTossWinner() { return tossWinner; }
+    public void setTossWinner(String tossWinner) { this.tossWinner = tossWinner; }
+
+    public String getChooseTo() { return chooseTo; }
+    public void setChooseTo(String chooseTo) { this.chooseTo = chooseTo; }
+
+    public int getTotalOvers() { return totalOvers; }
+    public void setTotalOvers(int totalOvers) { this.totalOvers = totalOvers; }
+
+    public int getOversPerBowler() { return oversPerBowler; }
+    public void setOversPerBowler(int oversPerBowler) { this.oversPerBowler = oversPerBowler; }
 }

@@ -56,4 +56,15 @@ public class TeamService {
 		
 		
 	}
+	public List<Teams> getTeamsByTournament(int tournamentId) {
+	    return TeamRepo.findByTournamentId(tournamentId);
+	}
+
+
+
+	public Teams getTeamByName(String name){
+	    return TeamRepo.findByTeamName(name);
+	}
+
+
 }
