@@ -67,7 +67,7 @@
 <div class="dropdown profile-dropdown">
     <a href="javascript:void(0);" class="dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown" data-bs-auto-close="outside">
         <span class="avatar online">
-            <img src="assets/img/profiles/avatar-01.jpg" alt="Img" class="img-fluid rounded-circle">
+            <img src="assets/img/profiles/CrickUser.png" alt="Img" class="img-fluid rounded-circle">
         </span>
     </a>
 
@@ -75,7 +75,7 @@
         <!-- Dynamic user info -->
         <div class="d-flex align-items-center bg-light rounded-1 p-2 mb-2">
             <span class="avatar avatar-lg me-2">
-                <img src="assets/img/profiles/avatar-01.jpg" alt="img" class="rounded-circle">
+                <img src="assets/img/profiles/CrickUser.png" alt="img" class="rounded-circle">
             </span>
             <div>
                 
@@ -86,7 +86,8 @@
         </div>
 
         <!-- Profile link -->
-        <a class="dropdown-item d-flex align-items-center" href="account-settings.html">
+       <a class="dropdown-item d-flex align-items-center" href="${pageContext.request.contextPath}/profile-settings">
+
             <i class="isax isax-profile-circle me-2"></i>Profile Settings
         </a>
 
@@ -144,7 +145,8 @@
 				<!-- Start Logo -->
 				<div class="sidebar-logo">
     <a href="home" class="logo logo-normal">
-        <img src="assets/img/sc-removebg-preview.png" alt="Logo" >
+       <img src="${pageContext.request.contextPath}/assets/img/sc-removebg-preview.png" alt="Logo">
+
     </a>
 
 
@@ -190,8 +192,9 @@
 										</a>
 										<ul>
 											<li><a href="home" class="active"></a></li>
-											<li><a href="home">Home</a></li>
-											 <li><a href="tournament">Add Tournament/Series</a></li>
+											<li><a href="${pageContext.request.contextPath}/home">Home</a></li>
+											<li><a href="${pageContext.request.contextPath}/tournament">Add Tournament/Series</a></li>
+
 											<li><a href="customer-dashboard.html">Start A Match</a></li>
 											<li><a href="super-admin-dashboard.html">My Cricket</a></li>
 											<li><a href="super-admin-dashboard.html">My Perfromnce</a></li>

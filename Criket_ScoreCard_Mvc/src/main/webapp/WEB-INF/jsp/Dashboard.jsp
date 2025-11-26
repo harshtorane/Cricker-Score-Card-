@@ -20,13 +20,13 @@
   border-radius: 15px;
 }
 
-/* Gradient move – फक्त right ला जाऊन stop होणार */
+
 @keyframes gradientMoveOnce {
   0% { background-position: 0% 50%; }
   100% { background-position: 100% 50%; }
 }
 
-/* हलकं fade आणि slide right */
+
 @keyframes fadeRight {
   0% {
     opacity: 0;
@@ -75,7 +75,7 @@
                     </div>
 
                     <!-- Background cricket image -->
-                    <div class="cricket-bg-icon position-absolute end-0 top-50 translate-middle-y pe-3 d-none d-sm-block"></div>
+                 
                 </div>
             </div>
 

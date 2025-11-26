@@ -1,77 +1,63 @@
 package com.rt.Criket_ScoreCard_Mvc.Controller.Entity;
 
-import jakarta.persistence.Entity;
-
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
-
-@Entity
 public class TeamEntity {
 
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int  id;
+    private int id;
     private String teamName;
     private String captainName;
-    private String  Monumber;
-    
+    private String monumber;
+    private int tournamentId;
 
-	public TeamEntity(int id, String teamName, String captainName, String monumber) {
-		super();
-		this.id = id;
-		this.teamName = teamName;
-		this.captainName = captainName;
-		Monumber = monumber;
-	}
+    public TeamEntity() {
+    }
 
+    public TeamEntity(int id, String teamName, String captainName, String monumber, int tournamentId) {
+        this.id = id;
+        this.teamName = teamName;
+        this.captainName = captainName;
+        this.monumber = monumber;
+        this.tournamentId = tournamentId;
+    }
 
-	public int getId() {
-		return id;
-	}
+    // GETTERS
+    public int getId() {
+        return id;
+    }
 
+    public String getTeamName() {
+        return teamName;
+    }
 
-	public void setId(int id) {
-		this.id = id;
-	}
+    public String getCaptainName() {
+        return captainName;
+    }
 
+    public String getMonumber() {
+        return monumber;
+    }
 
-	public String getTeamName() {
-		return teamName;
-	}
+    public int getTournamentId() {
+        return tournamentId;
+    }
 
+    // SETTERS
+    public void setId(int id) {
+        this.id = id;
+    }
 
-	public void setTeamName(String teamName) {
-		this.teamName = teamName;
-	}
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
+    }
 
+    public void setCaptainName(String captainName) {
+        this.captainName = captainName;
+    }
 
-	public String getCaptainName() {
-		return captainName;
-	}
+    public void setMonumber(String monumber) {
+        this.monumber = monumber;
+    }
 
-
-	public void setCaptainName(String captainName) {
-		this.captainName = captainName;
-	}
-
-
-	public String getMonumber() {
-		return Monumber;
-	}
-
-
-	public void setMonumber(String monumber) {
-		Monumber = monumber;
-	}
-
-
-	public  TeamEntity() {
-		
-	}
+    public void setTournamentId(int tournamentId) {
+        this.tournamentId = tournamentId;
+    }
 }
-

@@ -4,58 +4,32 @@ public class MatchStart {
 
     private int id;
     private int scheduleId;
+    private int tournamentId;
+
     private String tossWinner;
     private String chooseTo;
-    private String striker;
-    private String nonStriker;
-    private String bowler;
 
-    public int getId() {
-        return id;
-    }
-    public void setId(int id) {
-        this.id = id;
-    }
+    private int totalOvers;        
+    private int oversPerBowler;    
 
-    public int getScheduleId() {
-        return scheduleId;
-    }
-    public void setScheduleId(int scheduleId) {
-        this.scheduleId = scheduleId;
-    }
+    public int getId() { return id; }
+    public void setId(int id) { this.id = id; }
 
-    public String getTossWinner() {
-        return tossWinner;
-    }
-    public void setTossWinner(String tossWinner) {
-        this.tossWinner = tossWinner;
-    }
+    public int getScheduleId() { return scheduleId; }
+    public void setScheduleId(int scheduleId) { this.scheduleId = scheduleId; }
 
-    public String getChooseTo() {
-        return chooseTo;
-    }
-    public void setChooseTo(String chooseTo) {
-        this.chooseTo = chooseTo;
-    }
+    public int getTournamentId() { return tournamentId; }
+    public void setTournamentId(int tournamentId) { this.tournamentId = tournamentId; }
 
-    public String getStriker() {
-        return striker;
-    }
-    public void setStriker(String striker) {
-        this.striker = striker;
-    }
+    public String getTossWinner() { return tossWinner; }
+    public void setTossWinner(String tossWinner) { this.tossWinner = tossWinner; }
 
-    public String getNonStriker() {
-        return nonStriker;
-    }
-    public void setNonStriker(String nonStriker) {
-        this.nonStriker = nonStriker;
-    }
+    public String getChooseTo() { return chooseTo; }
+    public void setChooseTo(String chooseTo) { this.chooseTo = chooseTo; }
 
-    public String getBowler() {
-        return bowler;
-    }
-    public void setBowler(String bowler) {
-        this.bowler = bowler;
-    }
+    public int getTotalOvers() { return totalOvers; }
+    public void setTotalOvers(int totalOvers) { this.totalOvers = totalOvers; }
+
+    public int getOversPerBowler() { return oversPerBowler; }
+    public void setOversPerBowler(int oversPerBowler) { this.oversPerBowler = oversPerBowler; }
 }

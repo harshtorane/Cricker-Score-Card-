@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
 
-import com.rt.CricketScorecardBoot.entity.Teams;
 import com.rt.Criket_ScoreCard_Mvc.Controller.Entity.MatchStart;
 import com.rt.Criket_ScoreCard_Mvc.Controller.Entity.Schedule;
 
@@ -16,36 +15,48 @@ public class MvcMatchController {
 
     RestTemplate rt = new RestTemplate();
 
-    // LOAD START MATCH PAGE
-    @GetMapping("/match/start")
-    public String startMatchPage(@RequestParam int id,   // scheduleId
-                                 @RequestParam int tournamentId,
-                                 Model model) {
+    // ===================== LOAD START MATCH PAGE =====================
+  
+    		@GetMapping("/match/start")
+    		public String startMatchPage(
+    		        @RequestParam int id,
+    		        @RequestParam int tournamentId,
+    		        Model model) {
 
-        // Get schedule
-        Schedule schedule = rt.getForObject(
-                "http://localhost:8080/api/schedule/" + tournamentId,
-                Schedule[].class)[0];
+    		    // CORRECT API CALL (schedule by ID)
+    		    Schedule schedule = rt.getForObject(
+    		            "http://localhost:8080/api/schedule/getById/" + id,
+    		            Schedule.class);
 
-        // Get all teams
-        Teams[] teams = rt.getForObject(
-                "http://localhost:8080/api/team",
-                Teams[].class);
+    		    model.addAttribute("schedule", schedule);
+    		    model.addAttribute("scheduleId", id);
+    		    model.addAttribute("tournamentId", tournamentId);
 
-        model.addAttribute("scheduleId", id);
-        model.addAttribute("tournamentId", tournamentId);
-        model.addAttribute("teams", teams);
-        model.addAttribute("schedule", schedule);
+    		    return "StartMatch";
+    		}
 
-        return "StartMatch";   // JSP
-    }
 
-    // SUBMIT MATCH START DATA
-    @PostMapping("/match/start/save")
-    public String saveMatchStart(MatchStart ms) {
 
-        rt.postForObject("http://localhost:8080/api/match/start", ms, String.class);
+    // ===================== SUBMIT MATCH START DATA =====================
+    		@PostMapping("/match/start/save")
+    		public String saveMatchStart(MatchStart ms) {
 
-        return "redirect:/match/live?scheduleId=" + ms.getScheduleId();
-    }
+    		    System.out.println("🔥 Saving Match Start:");
+    		    System.out.println("ScheduleId = " + ms.getScheduleId());
+    		    System.out.println("TournamentId = " + ms.getTournamentId());
+    		    System.out.println("Toss Winner = " + ms.getTossWinner());
+    		    System.out.println("Decision = " + ms.getChooseTo());
+
+    		    rt.postForObject(
+    		            "http://localhost:8080/api/startmatch",
+    		            ms,
+    		            MatchStart.class
+    		    );
+
+    		    // 🔥 SAFETY DELAY (DB लिहीण्याआधी GET call होऊ नये)
+    		    try { Thread.sleep(300); } catch (Exception e) {}
+
+    		    return "redirect:/match/live?scheduleId=" + ms.getScheduleId();
+    		}
+
 }

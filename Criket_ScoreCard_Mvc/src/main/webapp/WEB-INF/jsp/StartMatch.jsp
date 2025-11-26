@@ -13,14 +13,11 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <style>
-<style>
 .page-wrapper {
     margin-left: 260px !important;
-    margin-top: 90px; 
+    margin-top: 90px;
     padding: 20px;
 }
-
-
 
 .card {
     border-radius: 12px;
@@ -39,7 +36,14 @@
     font-size: 16px;
     margin-bottom: 20px;
 }
+.form-row {
+    display:flex;
+    gap:12px;
+    flex-wrap:wrap;
+}
+.form-row .form-group { flex:1; min-width:200px; }
 </style>
+
 </head>
 
 <body class="bg-light">
@@ -48,7 +52,7 @@
 
     <h3 class="text-center mb-4">Start Match</h3>
 
-    <!-- MATCH HEADER -->
+    <!-- MATCH INFO -->
     <div class="match-header">
         <strong>Match:</strong> ${schedule.matchTitle}<br>
         <strong>Teams:</strong> ${schedule.teamA} vs ${schedule.teamB}<br>
@@ -56,54 +60,93 @@
         <strong class="ms-4">Time:</strong> ${schedule.matchTime}
     </div>
 
-    <!-- FORM -->
+    <!-- MAIN FORM -->
     <div class="card p-4">
         <form action="/match/start/save" method="post">
 
             <input type="hidden" name="scheduleId" value="${scheduleId}">
+            <input type="hidden" name="tournamentId" value="${tournamentId}">
 
             <!-- TOSS DETAILS -->
             <div class="card p-3 mb-4">
                 <h5 class="section-title">Toss Details</h5>
 
-                <label class="mt-2">Toss Winner</label>
-                <select class="form-control" name="tossWinner" required>
-                    <option value="${schedule.teamA}">${schedule.teamA}</option>
-                    <option value="${schedule.teamB}">${schedule.teamB}</option>
-                </select>
+                <div class="form-group mb-3">
+                    <label class="form-label">Toss Winner</label>
+                    <select class="form-select" name="tossWinner" required>
+                        <option value="">Select Team</option>
+                        <option value="${schedule.teamA}">${schedule.teamA}</option>
+                        <option value="${schedule.teamB}">${schedule.teamB}</option>
+                    </select>
+                </div>
 
-                <label class="mt-3">Decision</label>
-                <select class="form-control" name="chooseTo" required>
-                    <option value="Batting">Batting</option>
-                    <option value="Bowling">Bowling</option>
-                </select>
+                <div class="form-group mb-3">
+                    <label class="form-label">Decision</label>
+                    <select class="form-select" name="chooseTo" required>
+                        <option value="">Select</option>
+                        <option value="Batting">Batting</option>
+                        <option value="Bowling">Bowling</option>
+                    </select>
+                </div>
+
+                <!-- OVERS INPUTS -->
+                <div class="form-row mt-3">
+                    <div class="form-group">
+                        <label class="form-label">Total Overs (Innings)</label>
+                        <input type="number"
+                               class="form-control"
+                               name="totalOvers"
+                               id="totalOvers"
+                               min="1"
+                               max="100"
+                               step="1"
+                               placeholder="e.g. 20"
+                               required>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Overs per Bowler (Max)</label>
+                        <input type="number"
+                               class="form-control"
+                               name="oversPerBowler"
+                               id="oversPerBowler"
+                               min="1"
+                               max="20"
+                               step="1"
+                               placeholder="e.g. 4"
+                               required>
+                    </div>
+                </div>
+
             </div>
 
-            <!-- OPENING PLAYERS -->
-            <div class="card p-3 mb-4">
-                <h5 class="section-title">Opening Players</h5>
-
-                <label>Striker</label>
-                <input type="text" class="form-control" name="striker" placeholder="Enter striker name" required>
-
-                <label class="mt-2">Non Striker</label>
-                <input type="text" class="form-control" name="nonStriker" placeholder="Enter non striker name" required>
-            </div>
-
-            <!-- BOWLER -->
-            <div class="card p-3 mb-4">
-                <h5 class="section-title">Opening Bowler</h5>
-
-                <input type="text" class="form-control" name="bowler" placeholder="Enter bowler name" required>
-            </div>
-
-            <div class="text-center">
-                <button class="btn btn-success btn-lg px-5">🚀 Start Match</button>
+            <div class="text-start">
+                <button class="btn btn-success btn-lg px-4">🚀 Start Match</button>
             </div>
         </form>
     </div>
 
 </div>
+
+<script>
+// client-side validation: ensure oversPerBowler <= totalOvers
+document.querySelector('form').addEventListener('submit', function(e){
+    const total = parseInt(document.getElementById('totalOvers').value || '0', 10);
+    const per = parseInt(document.getElementById('oversPerBowler').value || '0', 10);
+
+    if(total <= 0 || per <= 0){
+        alert('कृपया Total Overs आणि Overs per Bowler योग्य प्रकारे भरा.');
+        e.preventDefault();
+        return;
+    }
+    // ensure per <= total (and also sensible: per <= Math.ceil(total/ (number-of-bowlers)?))
+    if(per > total){
+        alert('Overs per Bowler हे Total Overs पेक्षा जास्त असू शकत नाही.');
+        e.preventDefault();
+        return;
+    }
+});
+</script>
 
 <%@ include file="Footer.jsp" %>
 
