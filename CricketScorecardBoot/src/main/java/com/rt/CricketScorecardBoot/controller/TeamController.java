@@ -17,46 +17,45 @@ public class TeamController {
     @Autowired
     private TeamService teamService;
 
-    
     @PostMapping("/team")
     public String addTeam(@RequestBody Teams team) {
         teamService.add(team);
         return "Team added successfully";
     }
 
-    
     @GetMapping("/team")
     public List<Teams> getAllTeams() {
         return teamService.selectAll();
     }
 
-    
     @GetMapping("/team/{id}")
     public Optional<Teams> getTeamById(@PathVariable int id) {
-        return teamService.SelectId(id);
+        return Optional.ofNullable(teamService.SelectId(id));
     }
 
-    
     @PutMapping("/team/{id}")
     public String updateTeam(@PathVariable int id, @RequestBody Teams team) {
         teamService.Update(id, team);
         return "Team updated successfully";
     }
 
-    // ✅ DELETE - Delete team by ID
     @DeleteMapping("/team/{id}")
     public String deleteTeam(@PathVariable int id) {
         teamService.Delete(id);
         return "Team deleted successfully";
     }
+
     @GetMapping("/team/tournament/{tournamentId}")
     public List<Teams> getTeamsByTournament(@PathVariable int tournamentId) {
         return teamService.getTeamsByTournament(tournamentId);
     }
-    @GetMapping("/team/name/{teamName}")
-    public Teams getTeamByName(@PathVariable String teamName) {
-        return teamService.getTeamByName(teamName);
+
+    // *** NEW FIXED ENDPOINT ***
+    @GetMapping("/team/name/{teamName}/{tournamentId}")
+    public Teams getTeamByNameAndTournament(
+            @PathVariable String teamName,
+            @PathVariable int tournamentId) {
+
+        return teamService.getTeamByNameAndTournament(teamName, tournamentId);
     }
-
-
 }
