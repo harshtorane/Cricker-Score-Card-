@@ -11,6 +11,9 @@ import com.rt.Criket_ScoreCard_Mvc.Controller.Entity.Player;
 import com.rt.Criket_ScoreCard_Mvc.Controller.Entity.Schedule;
 import com.rt.Criket_ScoreCard_Mvc.Controller.Entity.TeamEntity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 public class LiveMatchController {
 
@@ -19,7 +22,7 @@ public class LiveMatchController {
     @GetMapping("/match/live")
     public String liveMatchPage(@RequestParam int scheduleId, Model model) {
 
-        // 1️⃣ Get Schedule
+        // 1️⃣ Load Schedule
         Schedule schedule = rt.getForObject(
                 "http://localhost:8080/api/schedule/getById/" + scheduleId,
                 Schedule.class);
@@ -28,27 +31,26 @@ public class LiveMatchController {
             model.addAttribute("error", "Schedule not found!");
             return "LiveMatch";
         }
-
         model.addAttribute("schedule", schedule);
 
-        // 2️⃣ Toss & Match Start Details
+        int tournamentId = schedule.getTournamentId();
+
+        // 2️⃣ Load Match Start / Toss Details
         MatchStart match = rt.getForObject(
                 "http://localhost:8080/api/startmatch/" + scheduleId,
                 MatchStart.class);
 
-        if (match == null) {
-            match = new MatchStart(); // avoid null pointer
-        }
-
+        if (match == null) match = new MatchStart();
         model.addAttribute("match", match);
 
-        // 3️⃣ Team Details (by team name)
+        // 3️⃣ Team A Entity
         TeamEntity teamA = rt.getForObject(
-                "http://localhost:8080/api/team/name/" + schedule.getTeamA(),
+                "http://localhost:8080/api/team/name/" + schedule.getTeamA() + "/" + tournamentId,
                 TeamEntity.class);
 
+        // 4️⃣ Team B Entity
         TeamEntity teamB = rt.getForObject(
-                "http://localhost:8080/api/team/name/" + schedule.getTeamB(),
+                "http://localhost:8080/api/team/name/" + schedule.getTeamB() + "/" + tournamentId,
                 TeamEntity.class);
 
         if (teamA == null || teamB == null) {
@@ -56,20 +58,27 @@ public class LiveMatchController {
             return "LiveMatch";
         }
 
-        int teamAId = teamA.getId();
-        int teamBId = teamB.getId();
-
-        // 4️⃣ Get Players of Both Teams
+        // 5️⃣ Load All Players of Team A (BATSMEN + BOWLERS + ALLROUNDERS)
         Player[] teamAPlayers = rt.getForObject(
-                "http://localhost:8080/api/player/team/" + teamAId,
+                "http://localhost:8080/api/player/team/" + teamA.getId(),
                 Player[].class);
 
+        // 6️⃣ Load All Players of Team B
         Player[] teamBPlayers = rt.getForObject(
-                "http://localhost:8080/api/player/team/" + teamBId,
+                "http://localhost:8080/api/player/team/" + teamB.getId(),
                 Player[].class);
 
+        // 7️⃣ Team A → ALL PLAYERS (Striker + Non-Striker)
         model.addAttribute("teamAPlayers", teamAPlayers);
-        model.addAttribute("teamBPlayers", teamBPlayers);
+
+        // 8️⃣ Team B → ONLY BOWLERS FOR BOWLING
+        List<Player> bowlers = new ArrayList<>();
+        for (Player p : teamBPlayers) {
+            if (!p.getRole().equalsIgnoreCase("batsman")) {
+                bowlers.add(p);
+            }
+        }
+        model.addAttribute("teamBPlayers", bowlers);
 
         return "LiveMatch";
     }
