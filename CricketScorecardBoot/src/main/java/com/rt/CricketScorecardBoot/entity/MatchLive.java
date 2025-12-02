@@ -1,7 +1,7 @@
+
 package com.rt.CricketScorecardBoot.entity;
 
 import jakarta.persistence.*;
-import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "match_live")
@@ -11,32 +11,27 @@ public class MatchLive {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Integer scheduleId;
-
-    private String teamInning;
+    private int scheduleId;
 
     private int runs = 0;
     private int wickets = 0;
-
     private int balls = 0;
 
-    private Integer strikerId;
-    private Integer nonStrikerId;
-
-    private Integer bowlerId;
+    private int strikerId;
+    private int nonStrikerId;
+    private int bowlerId;
 
     private int inningNumber = 1;
-
     private boolean isOver = false;
 
-    private LocalDateTime createdAt;
+    private String lastEventType;  
+    private int lastRuns;
 
-    @PrePersist
-    public void prePersist() {
-        this.createdAt = LocalDateTime.now();
-    }
+    public MatchLive() {}
 
-    // ========= GETTERS & SETTERS ==========
+    // --------------------
+    // Getters & Setters
+    // --------------------
 
     public Long getId() {
         return id;
@@ -46,20 +41,12 @@ public class MatchLive {
         this.id = id;
     }
 
-    public Integer getScheduleId() {
+    public int getScheduleId() {
         return scheduleId;
     }
 
-    public void setScheduleId(Integer scheduleId) {
+    public void setScheduleId(int scheduleId) {
         this.scheduleId = scheduleId;
-    }
-
-    public String getTeamInning() {
-        return teamInning;
-    }
-
-    public void setTeamInning(String teamInning) {
-        this.teamInning = teamInning;
     }
 
     public int getRuns() {
@@ -86,27 +73,27 @@ public class MatchLive {
         this.balls = balls;
     }
 
-    public Integer getStrikerId() {
+    public int getStrikerId() {
         return strikerId;
     }
 
-    public void setStrikerId(Integer strikerId) {
+    public void setStrikerId(int strikerId) {
         this.strikerId = strikerId;
     }
 
-    public Integer getNonStrikerId() {
+    public int getNonStrikerId() {
         return nonStrikerId;
     }
 
-    public void setNonStrikerId(Integer nonStrikerId) {
+    public void setNonStrikerId(int nonStrikerId) {
         this.nonStrikerId = nonStrikerId;
     }
 
-    public Integer getBowlerId() {
+    public int getBowlerId() {
         return bowlerId;
     }
 
-    public void setBowlerId(Integer bowlerId) {
+    public void setBowlerId(int bowlerId) {
         this.bowlerId = bowlerId;
     }
 
@@ -126,11 +113,19 @@ public class MatchLive {
         isOver = over;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
+    public String getLastEventType() {
+        return lastEventType;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
+    public void setLastEventType(String lastEventType) {
+        this.lastEventType = lastEventType;
+    }
+
+    public int getLastRuns() {
+        return lastRuns;
+    }
+
+    public void setLastRuns(int lastRuns) {
+        this.lastRuns = lastRuns;
     }
 }

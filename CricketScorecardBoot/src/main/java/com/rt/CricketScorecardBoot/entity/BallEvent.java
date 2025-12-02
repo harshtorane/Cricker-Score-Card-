@@ -1,3 +1,4 @@
+
 package com.rt.CricketScorecardBoot.entity;
 
 import jakarta.persistence.*;
@@ -12,21 +13,13 @@ public class BallEvent {
     private Long id;
 
     private Long matchLiveId;
-
     private int overNo;
-
     private int ballInOver;
-
-    private String eventType;   // run, wide, noball, bye, lb, wicket
-
+    private String eventType;
     private int runs;
-
     private Integer batsmanId;
-
     private Integer bowlerId;
-
     private String extraInfo;
-
     private LocalDateTime createdAt;
 
     @PrePersist
@@ -34,7 +27,9 @@ public class BallEvent {
         this.createdAt = LocalDateTime.now();
     }
 
-    // ==================== GETTERS & SETTERS =======================
+    // ------------------------
+    // Getters and Setters
+    // ------------------------
 
     public Long getId() {
         return id;

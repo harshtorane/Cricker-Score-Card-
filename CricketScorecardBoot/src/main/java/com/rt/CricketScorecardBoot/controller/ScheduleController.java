@@ -15,27 +15,26 @@ public class ScheduleController {
     @Autowired
     private ScheduleRepo repo;
 
-    // =================== SAVE ===================
+   
     @PostMapping
     public String save(@RequestBody Schedule s) {
         repo.save(s);
         return "Schedule Saved";
     }
 
-    // =================== GET BY TOURNAMENT ===================
+    
     @GetMapping("/{tournamentId}")
     public List<Schedule> get(@PathVariable int tournamentId) {
         return repo.findByTournamentId(tournamentId);
     }
 
-    // =================== DELETE ===================
     @DeleteMapping("/{id}")
     public String delete(@PathVariable int id) {
         repo.deleteById(id);
         return "Deleted";
     }
 
-    // =================== UPDATE (PUT) — FIXED & WORKING ===================
+    
     @PutMapping("/{id}")
     public String update(@PathVariable int id, @RequestBody Schedule newData) {
 
@@ -56,7 +55,7 @@ public class ScheduleController {
 
         return "Updated Successfully";
     }
- // =============== GET SCHEDULE BY ID =================
+
     @GetMapping("/getById/{id}")
     public Schedule getById(@PathVariable int id) {
         return repo.findById(id).orElse(null);

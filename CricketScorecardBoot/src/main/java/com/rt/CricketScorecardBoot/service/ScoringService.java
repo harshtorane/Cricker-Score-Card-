@@ -1,91 +1,55 @@
 package com.rt.CricketScorecardBoot.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import com.rt.CricketScorecardBoot.entity.*;
-import com.rt.CricketScorecardBoot.repository.*;
+import com.rt.CricketScorecardBoot.entity.MatchLive;
+import com.rt.CricketScorecardBoot.repository.MatchLiveRepo;
 
 @Service
 public class ScoringService {
 
-    private final MatchLiveRepo matchLiveRepo;
-    private final BallEventRepo ballEventRepo;
+    @Autowired
+    private MatchLiveRepo liveRepo;
 
-    public ScoringService(MatchLiveRepo matchLiveRepo, BallEventRepo ballEventRepo){
-        this.matchLiveRepo = matchLiveRepo;
-        this.ballEventRepo = ballEventRepo;
-    }
+    public MatchLive applyBall(Long matchLiveId, Integer batsmanId, Integer bowlerId, String type, int runs) {
 
-    @Transactional
-    public MatchLive applyBall(Long matchLiveId, Integer batsmanId, Integer bowlerId, String type, int runs){
+        MatchLive live = liveRepo.findById(matchLiveId)
+                .orElseThrow(() -> new RuntimeException("Match Live Not Found"));
 
-        MatchLive m = matchLiveRepo.findById(matchLiveId)
-                                   .orElseThrow(() -> new RuntimeException("MatchLive Not Found"));
+        // set last event data
+        live.setLastEventType(type);
+        live.setLastRuns(runs);
 
-        // ⭐ EXTRAS: wide / no-ball → NO BALL COUNT INCREMENT ⭐
-        if(type.equals("wide") || type.equals("noball")){
+        live.setStrikerId(batsmanId);
+        live.setBowlerId(bowlerId);
 
-            m.setRuns(m.getRuns() + runs);     // runs add
-            // no legal ball increment
+        switch (type.toLowerCase()) {
 
-            BallEvent be = new BallEvent();
-            be.setMatchLiveId(m.getId());
-            be.setEventType(type);
-            be.setRuns(runs);
-            be.setBatsmanId(batsmanId);
-            be.setBowlerId(bowlerId);
-            ballEventRepo.save(be);
+            case "run":
+                live.setRuns(live.getRuns() + runs);
+                live.setBalls(live.getBalls() + 1);
+                break;
 
-            return matchLiveRepo.save(m);
+            case "wicket":
+                live.setWickets(live.getWickets() + 1);
+                live.setBalls(live.getBalls() + 1);
+                break;
+
+            case "wide":
+            case "noball":
+                live.setRuns(live.getRuns() + runs);
+                break;
+
+            case "bye":
+            case "lb":
+                live.setRuns(live.getRuns() + runs);
+                live.setBalls(live.getBalls() + 1);
+                break;
         }
 
-        // ⭐ LEGAL BALL ⭐
-        m.setBalls(m.getBalls() + 1);
-
-        if(type.equals("run")){
-            m.setRuns(m.getRuns() + runs);
-        }
-        else if(type.equals("bye") || type.equals("lb")){
-            m.setRuns(m.getRuns() + runs);
-        }
-        else if(type.equals("wicket")){
-            m.setWickets(m.getWickets() + 1);
-        }
-
-        // ⭐ ODD RUN → STRIKE CHANGE ⭐
-        if((type.equals("run") || type.equals("bye") || type.equals("lb")) && runs % 2 == 1){
-            swapStrike(m);
-        }
-
-        // ⭐ END OF OVER → STRIKE CHANGE ⭐
-        if(m.getBalls() % 6 == 0){
-            swapStrike(m);
-        }
-
-        // ⭐ RECORD BALL EVENT ⭐
-        BallEvent be = new BallEvent();
-        be.setMatchLiveId(m.getId());
-
-        int over = (m.getBalls() - 1) / 6;
-        int ball = ((m.getBalls() - 1) % 6) + 1;
-
-        be.setOverNo(over);
-        be.setBallInOver(ball);
-
-        be.setEventType(type);
-        be.setRuns(runs);
-        be.setBatsmanId(batsmanId);
-        be.setBowlerId(bowlerId);
-
-        ballEventRepo.save(be);
-
-        return matchLiveRepo.save(m);
-    }
-
-    private void swapStrike(MatchLive m){
-        Integer temp = m.getStrikerId();
-        m.setStrikerId(m.getNonStrikerId());
-        m.setNonStrikerId(temp);
+        return liveRepo.save(live);
     }
 }
+
+
