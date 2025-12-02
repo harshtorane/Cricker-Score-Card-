@@ -8,134 +8,91 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Live Match (IPL Style)</title>
+<title>Live Match</title>
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <style>
 
-/* ================== IPL THEME BODY ================== */
-body {
-    background: #0D0D0D;
-    color: white;
-}
+body { background:#f5f7ff; }
 
 .page-wrapper {
-    margin-left: 260px;
-    margin-top: 90px;
-    padding: 20px;
+    margin-left:260px;
+    margin-top:90px;
+    padding:20px;
 }
 
-/* ================== SCORE HEADER ================== */
-.ipl-score-header {
-    background: linear-gradient(90deg, #3B0FFF, #FF00D4);
-    padding: 20px;
-    border-radius: 15px;
-    text-align: center;
-    margin-bottom: 20px;
+/* HEADER */
+.score-header {
+    background:#dbe8ff;
+    border-radius:12px;
+    padding:20px;
+    text-align:center;
+    margin-bottom:20px;
+    border:1px solid #b5ccff;
+}
+.teams { font-size:26px; font-weight:800; }
+.score-box { font-size:34px; font-weight:900; }
+.overs-box { font-size:18px; font-weight:600; }
+
+/* PLAYER PANEL */
+.player-panel {
+    background:white;
+    border:1px solid #cbd5ff;
+    border-radius:12px;
+    padding:15px;
+    margin-bottom:20px;
+}
+.panel-title { font-size:20px; font-weight:700; color:#3f51b5; }
+.player-name { font-size:17px; font-weight:600; }
+
+/* BALL INPUT */
+.ball-input {
+    background:white;
+    border:1px solid #cbd5ff;
+    padding:15px;
+    border-radius:12px;
+    margin-bottom:20px;
+    text-align:center;
+}
+.btn-ball {
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    font-size:18px;
+    margin:5px;
+    border:none;
+    color:white;
 }
 
-.ipl-team-row {
-    font-size: 28px;
-    font-weight: 800;
+/* RUN COLORS */
+.run0 { background:#4E4E4E }
+.run1 { background:#3B0FFF }
+.run2 { background:#008CFF }
+.run3 { background:#00C896 }
+.run4 { background:#FFD700; color:black; }
+.run6 { background:#FF0099 }
+.wicket { background:#FF2E2E }
+
+/* TIMELINE */
+.timeline-box {
+    background:white;
+    border:1px solid #cbd5ff;
+    border-radius:12px;
+    padding:15px;
 }
-
-.ipl-vs {
-    color: gold;
-    margin: 0 10px;
+.timeline span {
+    display:inline-flex;
+    width:38px;
+    height:38px;
+    border-radius:50%;
+    justify-content:center;
+    align-items:center;
+    background:#3B0FFF;
+    color:white;
+    font-weight:700;
+    margin:4px;
 }
-
-.ipl-score-box span {
-    font-size: 38px;
-    font-weight: 900;
-}
-
-.ipl-overs {
-    margin-left: 10px;
-    font-size: 20px;
-    font-weight: 600;
-}
-
-/* ================== PLAYER CARDS ================== */
-.ipl-player-card {
-    background: #1A1A1A;
-    border: 2px solid #3B0FFF;
-    padding: 15px;
-    border-radius: 15px;
-    margin-bottom: 15px;
-}
-
-.ipl-player-title {
-    font-size: 18px;
-    font-weight: bold;
-    margin-bottom: 8px;
-    color: #FF00D4;
-}
-
-.bowler-title {
-    color: #00C8FF;
-}
-
-.ipl-select {
-    width: 100%;
-    padding: 10px;
-    background: #101010;
-    color: white;
-    border: 2px solid #3B0FFF;
-    border-radius: 10px;
-}
-
-/* ================== BALL INPUT ================== */
-.ipl-ball-input {
-    background: #1A1A1A;
-    padding: 15px;
-    border-radius: 15px;
-    border: 2px solid #3B0FFF;
-    margin-top: 20px;
-    text-align: center;
-}
-
-.ipl-run-buttons .ipl-btn {
-    width: 65px;
-    height: 65px;
-    border-radius: 50%;
-    font-size: 22px;
-    font-weight: bold;
-    margin: 5px;
-    border: none;
-    color: white;
-}
-
-.run0 { background: #4E4E4E; }
-.run1 { background: #3B0FFF; }
-.run2 { background: #008CFF; }
-.run3 { background: #00C896; }
-.run4 { background: #FFD700; color: black; }
-.run6 { background: #FF0099; }
-.wicket { background: #FF2E2E; }
-
-/* ================== TIMELINE ================== */
-.ipl-timeline-box {
-    background: #1A1A1A;
-    padding: 15px;
-    border-radius: 15px;
-    border: 2px solid #3B0FFF;
-    margin-top: 20px;
-}
-
-.ipl-timeline span {
-    display: inline-flex;
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    font-weight: bold;
-    justify-content: center;
-    align-items: center;
-    margin: 4px;
-    background: #3B0FFF;
-    color: white;
-}
-
 </style>
 </head>
 
@@ -143,146 +100,125 @@ body {
 
 <div class="page-wrapper">
 
-<!-- ================= SCORE HEADER ================= -->
-<div class="ipl-score-header">
-    <div class="ipl-team-row">
-        <span class="ipl-team-name">${schedule.teamA}</span>
-        <span class="ipl-vs">vs</span>
-        <span class="ipl-team-name">${schedule.teamB}</span>
-    </div>
-
-    <div class="ipl-score-box">
-        <span id="scoreBox">0/0</span>
-        <span class="ipl-overs">Ov: <span id="overBox">0.0</span>/<span id="maxOvers">0</span></span>
-    </div>
-</div>
-
-<!-- =============== BATSMAN + BOWLER PANEL =============== -->
-<div class="row mt-4">
-
-    <!-- STRIKER + NON STRIKER -->
-    <div class="col-md-4">
-
-        <div class="ipl-player-card">
-            <div class="ipl-player-title">● Striker</div>
-            <select id="striker" class="ipl-select" onchange="updatePlayerDropdowns()">
-                <c:forEach var="p" items="${teamAPlayers}">
-                    <option value="${p.id}">${p.playerName} - ${p.role}</option>
-                </c:forEach>
-            </select>
+    <!-- HEADER -->
+    <div class="score-header">
+        <div class="teams">
+            ${schedule.teamA} <span style="color:#ff0055;">vs</span> ${schedule.teamB}
         </div>
-
-        <div class="ipl-player-card">
-            <div class="ipl-player-title">○ Non-Striker</div>
-            <select id="nonstriker" class="ipl-select" onchange="updatePlayerDropdowns()">
-                <c:forEach var="p" items="${teamAPlayers}">
-                    <option value="${p.id}">${p.playerName} - ${p.role}</option>
-                </c:forEach>
-            </select>
-        </div>
-
-    </div>
-
-    <!-- BOWLER -->
-    <div class="col-md-4">
-        <div class="ipl-player-card">
-            <div class="ipl-player-title bowler-title">🎯 Bowler</div>
-            <select id="bowler" class="ipl-select">
-                <c:forEach var="p" items="${teamBPlayers}">
-                    <option value="${p.id}">${p.playerName} - ${p.role}</option>
-                </c:forEach>
-            </select>
+        <div class="score-box" id="scoreBox">${live.runs}/${live.wickets}</div>
+        <div class="overs-box">
+            Ov:
+            <span id="overBox">
+                <c:out value="${live.balls/6}" />.<c:out value="${live.balls % 6}" />
+            </span>
+            / ${matchStart.totalOvers}
         </div>
     </div>
 
-</div>
+    <!-- HIDDEN FIELDS (Important) -->
+    <input type="hidden" id="liveId" value="${live.id}">
+    <input type="hidden" id="scheduleId" value="${schedule.id}">
+    <input type="hidden" id="strikerId" value="${striker != null ? striker.id : 0}">
+    <input type="hidden" id="bowlerId" value="${bowler != null ? bowler.id : 0}">
 
-<!-- ================= BALL INPUT PANEL ================= -->
-<div class="ipl-ball-input">
-    <h5 class="ipl-section-title">BALL INPUT</h5>
-
-    <div class="ipl-run-buttons">
-        <button class="ipl-btn run0" onclick="sendBall(0)">0</button>
-        <button class="ipl-btn run1" onclick="sendBall(1)">1</button>
-        <button class="ipl-btn run2" onclick="sendBall(2)">2</button>
-        <button class="ipl-btn run3" onclick="sendBall(3)">3</button>
-        <button class="ipl-btn run4" onclick="sendBall(4)">4</button>
-        <button class="ipl-btn run6" onclick="sendBall(6)">6</button>
-        <button class="ipl-btn wicket" onclick="sendBall(-1)">W</button>
+    <!-- CURRENT PLAYERS -->
+    <div class="player-panel">
+        <div class="panel-title">Current Players</div>
+        <p class="player-name">🟢 <b>Striker:</b> ${striker.playerName} (${striker.role})</p>
+        <p class="player-name">🔵 <b>Non-Striker:</b> ${nonStriker.playerName} (${nonStriker.role})</p>
+        <p class="player-name">🎯 <b>Bowler:</b> ${bowler.playerName} (${bowler.role})</p>
     </div>
+
+    <!-- BALL INPUT -->
+    <div class="ball-input">
+
+        <button class="btn-ball run0" onclick="sendBall(0,'run')">0</button>
+        <button class="btn-ball run1" onclick="sendBall(1,'run')">1</button>
+        <button class="btn-ball run2" onclick="sendBall(2,'run')">2</button>
+        <button class="btn-ball run3" onclick="sendBall(3,'run')">3</button>
+        <button class="btn-ball run4" onclick="sendBall(4,'run')">4</button>
+        <button class="btn-ball run6" onclick="sendBall(6,'run')">6</button>
+        <button class="btn-ball wicket" onclick="sendBall(0,'wicket')">W</button>
+
+        <div class="mt-3">
+            <button class="btn-ball run1" onclick="sendBall(1,'wide')">WD</button>
+            <button class="btn-ball run1" onclick="sendBall(1,'noball')">NB</button>
+            <button class="btn-ball run1" onclick="sendBall(1,'bye')">BYE</button>
+            <button class="btn-ball run1" onclick="sendBall(1,'lb')">LB</button>
+        </div>
+    </div>
+
+    <!-- TIMELINE -->
+    <div class="timeline-box">
+        <div class="panel-title">Timeline</div>
+        <div id="timeline"></div>
+    </div>
+
 </div>
 
-<!-- ================= BALL TIMELINE ================= -->
-<div class="ipl-timeline-box">
-    <h5 class="ipl-section-title">TIMELINE</h5>
-    <div id="timeline" class="ipl-timeline"></div>
-</div>
-
-</div>
-
-<!-- ================= JAVASCRIPT ================= -->
 <script>
 
-// LOAD MAX OVERS
-fetch("/api/startmatch/${schedule.id}")
-    .then(r => r.json())
-    .then(data => {
-        document.getElementById("maxOvers").innerHTML = data.totalOvers;
-    });
+// --------------- SEND BALL ---------------
+function sendBall(runs, type) {
 
-// STRIKER / NON-STRIKER FILTER
-function updatePlayerDropdowns() {
-    let s = document.getElementById("striker").value;
-    let ns = document.getElementById("nonstriker").value;
-
-    document.querySelectorAll("#striker option").forEach(o => o.style.display = "block");
-    document.querySelectorAll("#nonstriker option").forEach(o => o.style.display = "block");
-
-    if (s) document.querySelector(`#nonstriker option[value='${s}']`).style.display = "none";
-    if (ns) document.querySelector(`#striker option[value='${ns}']`).style.display = "none";
-}
-
-// SEND BALL EVENT
-function sendBall(run) {
+    let matchLiveId = document.getElementById("liveId").value;
+    let strikerId = document.getElementById("strikerId").value;
+    let bowlerId  = document.getElementById("bowlerId").value;
 
     let dto = {
-        runs: run,
-        type: (run == -1 ? "wicket" : "run"),
-        batsmanId: document.getElementById("striker").value,
-        bowlerId: document.getElementById("bowler").value
+        runs: runs,
+        type: type,
+        batsmanId: parseInt(strikerId),
+        bowlerId: parseInt(bowlerId)
     };
 
-    fetch("/api/match/${match.id}/ball", {
-        method:"POST",
-        headers:{ "Content-Type":"application/json" },
+    fetch(`http://localhost:8080/api/match/${matchLiveId}/ball`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(dto)
     })
     .then(r => r.json())
-    .then(data => {
-        document.getElementById("scoreBox").innerHTML = data.runs + "/" + data.wickets;
-        document.getElementById("overBox").innerHTML = data.overs;
-
-        document.getElementById("timeline").innerHTML 
-            += `<span>${run == -1 ? "W" : run}</span>`;
-    });
+    .then(updateUI)
+    .catch(e => console.log("Ball Error:", e));
 }
 
-// AUTO REFRESH SCORE
-function refreshScore() {
-    fetch("/api/match/by-schedule/${schedule.id}")
+// --------------- UPDATE UI ---------------
+function updateUI(data) {
+
+    let over = Math.floor(data.balls / 6);
+    let ball = data.balls % 6;
+
+    document.getElementById("scoreBox").innerText = `${data.runs}/${data.wickets}`;
+    document.getElementById("overBox").innerText = `${over}.${ball}`;
+
+    let type = data.lastEventType;
+    let runs = data.lastRuns;
+
+    if (type) {
+        let show =
+            type === "wicket" ? "W" :
+            type === "wide" ? "WD" :
+            type === "noball" ? "NB" :
+            type === "bye" ? "B" + runs :
+            type === "lb" ? "LB" + runs :
+            runs;
+
+        document.getElementById("timeline").innerHTML += `<span>${show}</span>`;
+    }
+}
+
+// --------------- AUTO REFRESH ---------------
+setInterval(() => {
+
+    let scheduleId = document.getElementById("scheduleId").value;
+
+    fetch(`http://localhost:8080/api/match/by-schedule/${scheduleId}`)
         .then(r => r.json())
-        .then(data => {
-            document.getElementById("scoreBox").innerHTML = data.runs + "/" + data.wickets;
-            document.getElementById("overBox").innerHTML = data.overs;
-        });
-}
-
-setInterval(refreshScore, 2000);
-updatePlayerDropdowns();
+        .then(updateUI)
+        .catch(e => {});
+}, 1500);
 
 </script>
-
-<%@ include file="Footer.jsp" %>
 
 </body>
 </html>
